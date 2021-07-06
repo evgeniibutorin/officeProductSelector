@@ -22,8 +22,9 @@
             <th>ID</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Action</th>
         </tr>
-        <c:forEach var="product" items="${listProduct}">
+        <c:forEach var="product" items="${products}">
             <tr>
                 <td><c:out value="${product.id}" /></td>
                 <td><c:out value="${product.name}" /></td>
