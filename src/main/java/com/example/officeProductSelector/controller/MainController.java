@@ -16,4 +16,13 @@ public class MainController {
         return "product_change_page";
     }
 
+    @GetMapping("/new")
+    public String getFormPage() {
+        return "product_change_page";
+    }
+
+    @GetMapping("/list")
+    public String get() {
+        return "admin_product_list";
+    }
 }
