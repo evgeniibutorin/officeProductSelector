@@ -3,6 +3,7 @@ package com.example.officeProductSelector.controller;
 import com.example.officeProductSelector.model.Product;
 import com.example.officeProductSelector.service.ProductService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +36,9 @@ public class MainController {
     }
 
     @GetMapping("/list")
-    public String get() {
+    public String get(ModelMap productModel) {
+        List<Product> products = productService.findAllProducts();
+        productModel.addAttribute("products", products);
         return "admin_product_list";
     }
 
@@ -67,6 +70,12 @@ public class MainController {
         List<Product> products = productService.findAllProducts();
         productModel.addAttribute("products", products);
         return "admin_product_list";
+    }
+    @GetMapping("/edit")
+    public String editProduct(@RequestParam int id, Model product){
+        Product productFromDB = productService.getProductById(id);
+        product.addAttribute(productFromDB);
+        return "product_change_page";
     }
 
 

@@ -17,7 +17,7 @@
 </div>
 <div align="center">
     <c:if test="${product != null}">
-    <form action="/update" method="post">
+    <form action="/officeProductSelector_war_exploded/update" method="post">
         </c:if>
         <c:if test="${product == null}">
         <form action="/officeProductSelector_war_exploded/insert" method="post">
