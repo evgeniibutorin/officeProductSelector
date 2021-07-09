@@ -17,10 +17,10 @@
 </div>
 <div align="center">
     <c:if test="${product != null}">
-    <form action="/officeProductSelector_war_exploded/update" method="post">
+    <form action="/officeProductSelector_war_exploded/update" method="post" enctype="multipart/form-data">
         </c:if>
         <c:if test="${product == null}">
-        <form action="/officeProductSelector_war_exploded/insert" method="post">
+        <form action="/officeProductSelector_war_exploded/insert" method="post" enctype="multipart/form-data">
             </c:if>
             <table border="1" cellpadding="5">
                 <caption>
@@ -49,6 +49,14 @@
                     <td>
                         <input type="text" name="description" size="45"
                                value="<c:out value='${product.description}' />"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Logo: </th>
+                    <td>
+                        <input type="file" name="file"
+
                         />
                     </td>
                 </tr>

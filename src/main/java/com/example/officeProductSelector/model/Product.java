@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -16,9 +13,13 @@ import javax.persistence.Id;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
 
-    String name;
+    private String name;
 
-    String description;
+    private String description;
+
+    //Lob - large object Указывает, что постоянное свойство или поле должно сохраняться как большой объект для типа большого объекта, поддерживаемого базой данных.
+    @Lob
+    private String logo;
 }

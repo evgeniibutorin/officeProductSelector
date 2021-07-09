@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+  <title>Product Management</title>
+</head>
+<body>
+<div>
+  <h1>Product Management</h1>
+  <h2>
+    <a href="new">Add New Product</a>
+    &nbsp;&nbsp;&nbsp;
+    <a href="list">List All Products</a>
+
+  </h2>
+</div>
+<div align="center">
+  <c:if test="${product != null}">
+    <form action="/officeProductSelector_war_exploded/update" method="post">
+  </c:if>
+  <c:if test="${product == null}">
+    <form action="/officeProductSelector_war_exploded/insert" method="post">
+  </c:if>
+  <table border="1" cellpadding="5">
+    <caption>
+      <h2>
+        <c:if test="${product != null}">
+          Edit Product
+        </c:if>
+        <c:if test="${product == null}">
+          Add New Product
+        </c:if>
+      </h2>
+    </caption>
+    <c:if test="${product != null}">
+      <input type="hidden" name="id" value="<c:out value='${product.id}' />" />
+    </c:if>
+    <tr>
+      <th>Product Name: </th>
+      <td>
+        <input type="text" name="name" size="45"
+               value="<c:out value='${product.name}' />"
+        />
+      </td>
+    </tr>
+    <tr>
+      <th>Description: </th>
+      <td>
+        <input type="text" name="description" size="45"
+               value="<c:out value='${product.description}' />"
+        />
+      </td>
+    </tr>
+    <tr>
+      <th>Logo: </th>
+      <td>
+        <input type="file" name="logo"
+               value="<c:out value='${product.description}' />"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <input type="submit" value="Save" />
+      </td>
+    </tr>
+  </table>
+  </form>
+</div>
+</body>
+</html>
