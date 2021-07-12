@@ -19,6 +19,7 @@
     <table border="1" cellpadding="5">
         <caption><h2>List of Products</h2></caption>
         <tr>
+            <th>Image</th>
             <th>ID</th>
             <th>Name</th>
             <th>Description</th>
@@ -26,7 +27,13 @@
         </tr>
         <c:forEach var="product" items="${products}">
             <tr>
-                <td><c:out value="${product.id}" /></td>
+                <c:if test="${product.logo != null}">
+                    <td><img style="display: block; width: 100px; height: 100px;"  src='data:image/jpg;base64,${product.logo}'></td>
+                </c:if>
+                <c:if test="${product.logo == null}">
+                    <td>Изображение <br> отсутсвует</td>
+                </c:if>
+               <td><c:out value="${product.id}" /></td>
                 <td><c:out value="${product.name}" /></td>
                 <td><c:out value="${product.description}" /></td>
                 <td>
