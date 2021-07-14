@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,7 +20,14 @@ public class Product {
 
     private String description;
 
-    //Lob - large object Указывает, что постоянное свойство или поле должно сохраняться как большой объект для типа большого объекта, поддерживаемого базой данных.
     @Lob
     private String logo;
+//
+//    @OneToMany
+//    List<Comment> comments;
+//
+//    @OneToMany
+//    List<Mark> marks;
+
+
 }

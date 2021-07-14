@@ -87,10 +87,7 @@ public class MainController {
             System.out.println("not a a valid file");
         }
         try {
-//            Base64.getEncoder().encodeToString(file.getBytes())
-//            product.setLogo(Base64.getEncoder().encodeToString(file.getBytes()));
-            String str = new String(file.getBytes(), StandardCharsets.UTF_8);
-            product.setLogo(str);
+           product.setLogo(Base64.getEncoder().encodeToString(file.getBytes()));
         } catch (IOException e) {
             e.printStackTrace();
         }
