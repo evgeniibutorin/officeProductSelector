@@ -5,6 +5,8 @@ import com.example.officeProductSelector.model.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -25,6 +27,12 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User getUserByLoginAndPassword(String login, String password) {
         return userDao.getByLoginAndPassword(login, password);
+    }
+
+    @Override
+    @Transactional
+    public List<User> getByLogin(String login){
+        return userDao.getByLogin(login);
     }
 
 }

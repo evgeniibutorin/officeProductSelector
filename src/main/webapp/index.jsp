@@ -9,8 +9,10 @@
 <body>
 
 <a href="authorization">Авторизация</a>
-&nbsp;&nbsp;&nbsp;
+<br>
 <a href="registration">Регистрация</a>
+<br>
+<a href="main/list">Список продуктов</a>
 
 <%--<p><input type="submit" value="Авторизация"--%>
 <%--          onclick="window.location='login.jsp';" />--%>

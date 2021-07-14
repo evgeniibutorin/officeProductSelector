@@ -1,6 +1,5 @@
 package com.example.officeProductSelector.dao;
 
-import com.example.officeProductSelector.model.Product;
 import com.example.officeProductSelector.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -35,6 +34,17 @@ public class UserDaoImpl implements UserDao{
         cq.select(root).where(predicates.toArray(new Predicate[]{}));
         Query<User> query = session.createQuery(cq);
         return query.getSingleResult();
+    }
+
+    @Override
+    public List<User> getByLogin(String login) {
+        Session session = this.sessionFactory.getCurrentSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<User> cq = cb.createQuery(User.class);
+        Root<User> root = cq.from(User.class);
+        cq.select(root).where(cb.equal(root.get("login"), login));
+        Query<User> query = session.createQuery(cq);
+        return query.getResultList();
     }
 
     @Override

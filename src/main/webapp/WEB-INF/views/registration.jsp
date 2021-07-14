@@ -10,6 +10,12 @@
 
 <div align="center">
     <h2>Login page</h2>
+
+    <a href="authorization">Авторизация</a>
+    <br>
+    <a href="main/list">Список продуктов</a>
+    <br>
+
     <form action="/officeProductSelector_war_exploded/registration" method="post">
         <table border="1" cellpadding="5">
             <caption>

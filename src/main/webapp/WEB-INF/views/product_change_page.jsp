@@ -17,10 +17,10 @@
 </div>
 <div align="center">
     <c:if test="${product != null}">
-    <form action="/officeProductSelector_war_exploded/update" method="post" enctype="multipart/form-data">
+    <form action="/officeProductSelector_war_exploded/main/update" method="post" enctype="multipart/form-data">
         </c:if>
         <c:if test="${product == null}">
-        <form action="/officeProductSelector_war_exploded/insert" method="post" enctype="multipart/form-data">
+        <form action="/officeProductSelector_war_exploded/main/insert" method="post" enctype="multipart/form-data">
             </c:if>
             <table border="1" cellpadding="5">
                 <caption>

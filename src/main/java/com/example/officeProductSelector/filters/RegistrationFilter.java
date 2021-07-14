@@ -1,7 +1,6 @@
 package com.example.officeProductSelector.filters;
 
 import com.example.officeProductSelector.components.ActiveUser;
-import com.example.officeProductSelector.model.User;
 import com.example.officeProductSelector.service.UserService;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -41,35 +40,38 @@ public class RegistrationFilter implements Filter, ApplicationContextAware {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        activeUser = new ActiveUser();
+//
 
-        if (activeUser.isActive()){
-            filterChain.doFilter(servletRequest,servletResponse);
-            return;
-        }
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
-        if(request.getRequestURI().contains("/registration")){
-            filterChain.doFilter(servletRequest,servletResponse);
+//        if (request.getRequestURI().contains("/registration")) {
+//            filterChain.doFilter(servletRequest, servletResponse);
+//            return;
+//        }
+
+////
+//        if (request.getRequestURI().contains("/authorization")) {
+////            String login = (String) servletRequest.getAttribute("login");
+////            String password = (String) servletRequest.getAttribute("password");
+////            if (login == null || password == null) {
+////                HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
+////                httpResponse.sendRedirect("http://localhost:9090/officeProductSelector_war_exploded/registration");
+////                servletResponse.getWriter().println("Please write your login and password");
+////                return;
+////            }
+//            filterChain.doFilter(servletRequest, servletResponse);
+//            return;
+//
+//        }
+
+
+        Boolean isActive = (Boolean)request.getSession().getAttribute("isActive");
+        if (!Boolean.TRUE.equals(isActive)) {
+//            filterChain.doFilter(servletRequest, servletResponse);
+            HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
+            httpResponse.sendRedirect("http://localhost:9090/officeProductSelector_war_exploded/authorization");
             return;
         }
-
-        if(request.getRequestURI().contains("/authorization")){
-            String login = (String) servletRequest.getAttribute("login");
-            String password = (String) servletRequest.getAttribute("password");
-            //todo: в web.xml добавить возможность переходить на страницы регистрации и авторизации
-            if (login == null||password==null) {
-                HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
-                httpResponse.sendRedirect("http://localhost:9090/officeProductSelector_war_exploded/registration");
-                servletResponse.getWriter().println("Please write your login and password");
-                return;
-            }
-            filterChain.doFilter(servletRequest,servletResponse);
-            return;
-
-        }
-
-
 
 
 //
@@ -84,8 +86,8 @@ public class RegistrationFilter implements Filter, ApplicationContextAware {
 //            httpResponse.sendRedirect("http://localhost:9090/officeProductSelector_war_exploded/registration");
 //            return;
 //        }
-
-
+        filterChain.doFilter(servletRequest,servletResponse);
+        return;
     }
 
 

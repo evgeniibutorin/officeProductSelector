@@ -37,9 +37,9 @@
                 <td><c:out value="${product.name}" /></td>
                 <td><c:out value="${product.description}" /></td>
                 <td>
-                    <a href="edit?id=<c:out value='${product.id}' />">Edit</a>
+                    <a href="/officeProductSelector_war_exploded/main/edit?id=<c:out value='${product.id}' />">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="delete?id=<c:out value='${product.id}' />">Delete</a>
+                    <a href="/officeProductSelector_war_exploded/main/delete?id=<c:out value='${product.id}' />">Delete</a>
                 </td>
             </tr>
         </c:forEach>

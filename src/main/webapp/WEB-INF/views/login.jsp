@@ -16,6 +16,10 @@
                 Enter login and password
             </h2>
         </caption>
+        <a href="registration">Регистрация</a>
+        <br>
+        <a href="main/list">Список продуктов</a>
+        <br>
         <tr>
             <th>Login: </th>
             <td>
