@@ -9,9 +9,11 @@
 <div>
     <h1>Product Management</h1>
     <h2>
-        <a href="new">Add New Product</a>
+        <a href="/officeProductSelector_war_exploded/main/new">Add New Product</a>
         &nbsp;&nbsp;&nbsp;
-        <a href="list">List All Products</a>
+        <a href="/officeProductSelector_war_exploded/">Main page</a>
+
+        <a href="/officeProductSelector_war_exploded/logOut">Log out</a>
 
     </h2>
 </div>
@@ -27,16 +29,20 @@
         </tr>
         <c:forEach var="product" items="${products}">
             <tr>
-                <c:if test="${product.logo != null}">
-                    <td><img style="display: block; width: 100px; height: 100px;"  src='data:image/jpg;base64,${product.logo}'></td>
-                </c:if>
-                <c:if test="${product.logo == null}">
-                    <td>Изображение <br> отсутсвует</td>
-                </c:if>
+                <c:choose>
+                    <c:when test="${product.logo != null && product.logo!=''}">
+                        <td><img style="display: block; width: 100px; height: 100px;"  src='data:image/jpg;base64,${product.logo}'></td>
+                    </c:when>
+                    <c:otherwise>
+                        <td>Изображение <br> отсутсвует</td>
+                    </c:otherwise>
+                </c:choose>
                <td><c:out value="${product.id}" /></td>
                 <td><c:out value="${product.name}" /></td>
                 <td><c:out value="${product.description}" /></td>
                 <td>
+                    <a href="/officeProductSelector_war_exploded/main/details?id=<c:out value='${product.id}' />">Details</a>
+
                     <a href="/officeProductSelector_war_exploded/main/edit?id=<c:out value='${product.id}' />">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/officeProductSelector_war_exploded/main/delete?id=<c:out value='${product.id}' />">Delete</a>

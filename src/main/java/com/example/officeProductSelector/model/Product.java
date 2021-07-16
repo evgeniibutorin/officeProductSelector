@@ -22,12 +22,12 @@ public class Product {
 
     @Lob
     private String logo;
-//
-//    @OneToMany
-//    List<Comment> comments;
-//
-//    @OneToMany
-//    List<Mark> marks;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "product")
+    List<Comment> comments;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "product")
+    List<Mark> marks;
 
 
 }

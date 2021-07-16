@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDao{
     private SessionFactory sessionFactory;
 
     @Override
-    public User getByLoginAndPassword(String login, String password) {
+    public List<User> getByLoginAndPassword(String login, String password) {
         Session session = this.sessionFactory.getCurrentSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<User> cq = cb.createQuery(User.class);
@@ -33,7 +33,7 @@ public class UserDaoImpl implements UserDao{
         predicates.add(cb.equal(root.get("password"), password));
         cq.select(root).where(predicates.toArray(new Predicate[]{}));
         Query<User> query = session.createQuery(cq);
-        return query.getSingleResult();
+        return query.getResultList();
     }
 
     @Override

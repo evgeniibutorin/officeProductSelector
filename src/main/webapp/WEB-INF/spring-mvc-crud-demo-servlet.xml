@@ -42,6 +42,8 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL94Dialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+
             </props>
         </property>
     </bean>
@@ -68,4 +70,5 @@
     <tx:annotation-driven transaction-manager="myTransactionManager" />
     <!-- Add support for reading web resources: css, images, js, etc ... -->
     <!--    <mvc:resources location="/resources/" mapping="/resources/**" />-->
+    <mvc:resources mapping="/static/**" location="/WEB-INF/static/"></mvc:resources>
 </beans>

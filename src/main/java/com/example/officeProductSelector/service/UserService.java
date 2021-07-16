@@ -8,5 +8,5 @@ public interface UserService {
 
     List<User> getByLogin(String login);
     void saveUser(User user);
-    User getUserByLoginAndPassword(String login, String password);
+    List<User> getUserByLoginAndPassword(String login, String password);
 }

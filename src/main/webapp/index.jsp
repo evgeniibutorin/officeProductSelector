@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -7,18 +7,16 @@
     <title>Стартовая страница</title>
 </head>
 <body>
+<h3>
+    <a href="authorization">Авторизация</a>
+    <br>
+    <a href="registration">Регистрация</a>
+    <br>
+    <a href="main/list">Список продуктов</a>
+    <br>
+    <a href="main/admlist">Администрирование продуктов</a>
+    <br>
 
-<a href="authorization">Авторизация</a>
-<br>
-<a href="registration">Регистрация</a>
-<br>
-<a href="main/list">Список продуктов</a>
-
-<%--<p><input type="submit" value="Авторизация"--%>
-<%--          onclick="window.location='login.jsp';" />--%>
-<%--    <br />--%>
-<%--    <input type="submit" value="Регистрация"--%>
-<%--           onclick="window.location='registration.jsp';" />--%>
-<%--</p>--%>
+</h3>
 </body>
 </html>

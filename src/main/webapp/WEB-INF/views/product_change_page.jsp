@@ -9,10 +9,11 @@
 <div>
     <h1>Product Management</h1>
     <h2>
-        <a href="new">Add New Product</a>
+        <a href="/officeProductSelector_war_exploded">Main page</a>
         &nbsp;&nbsp;&nbsp;
-        <a href="list">List All Products</a>
+        <a href="/officeProductSelector_war_exploded/main/admlist">List All Products</a>
 
+        <a href="/officeProductSelector_war_exploded/logOut">Log out</a>
     </h2>
 </div>
 <div align="center">

@@ -1,13 +1,9 @@
 package com.example.officeProductSelector.controller;
 
-import com.example.officeProductSelector.components.ActiveUser;
 import com.example.officeProductSelector.model.Product;
 import com.example.officeProductSelector.model.User;
 import com.example.officeProductSelector.service.ProductService;
 import com.example.officeProductSelector.service.UserService;
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +25,7 @@ public class RegistrationController {
         this.productService = productService;
 //        this.activeUser = activeUser;
     }
+
     public static String IS_ACTIVE = "isActive";
     public static String USER = "user";
 
@@ -48,18 +45,18 @@ public class RegistrationController {
                               @RequestParam String password,
                               HttpServletRequest request,
                               ModelMap productModel) {
-        User user = userService.getUserByLoginAndPassword(login, password);
-        if (user != null) {
-            request.getSession().setAttribute(USER, user);
+        List<User> users = userService.getUserByLoginAndPassword(login, password);
+        if (!(users == null || users.isEmpty())) {
+            request.getSession().setAttribute(USER, users.get(0));
             request.getSession().setAttribute(IS_ACTIVE, true);
-//            activeUser.setUser(user);
+//            activeUser.setUser(users);
 //            activeUser.setActive(true);
             List<Product> products = productService.findAllProducts();
             productModel.addAttribute("products", products);
             return "product_list";
+        } else {
+            return "registration";
         }
-        else {
-            return "registration";}
 
     }
 
@@ -70,7 +67,7 @@ public class RegistrationController {
                                 HttpServletRequest request) {
 
         List<User> userFromFB = userService.getByLogin(login);
-        if (userFromFB==null||userFromFB.isEmpty()) {
+        if (userFromFB == null || userFromFB.isEmpty()) {
             User user = new User();
             user.setName(name);
             user.setLogin(login);
@@ -80,15 +77,13 @@ public class RegistrationController {
             request.getSession().setAttribute(IS_ACTIVE, true);
 //            activeUser.setUser(user);
 //            activeUser.setActive(true);
-        }
-
-        else {
+        } else {
             request.getSession().setAttribute(USER, userFromFB.get(0));
             request.getSession().setAttribute(IS_ACTIVE, true);
 //            activeUser.setUser(userFromFB);
 //            activeUser.setActive(true);
         }
-        return "admin_product_list";
+        return "product_list";
     }
 
     @GetMapping("/logOut")

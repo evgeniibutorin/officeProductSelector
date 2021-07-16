@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User getUserByLoginAndPassword(String login, String password) {
+    public List<User> getUserByLoginAndPassword(String login, String password) {
         return userDao.getByLoginAndPassword(login, password);
     }
 

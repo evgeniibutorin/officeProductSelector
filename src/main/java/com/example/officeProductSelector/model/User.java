@@ -3,6 +3,7 @@ package com.example.officeProductSelector.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,10 +19,12 @@ public class User {
 
     String password;
 
-//    @OneToMany
-//    List<Comment> comments;
-//
-//    @OneToMany
-//    List<Mark> marks;
+    Status status;
+
+    @OneToMany
+    List<Comment> comments;
+
+    @OneToMany
+    List<Mark> marks;
 
 }
