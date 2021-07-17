@@ -10,8 +10,6 @@ import org.springframework.web.context.annotation.SessionScope;
 @Data
 public class ActiveUser {
 
-
-
     User user;
 
     boolean isActive;

@@ -1,6 +1,7 @@
 package com.example.officeProductSelector.controller;
 
 import com.example.officeProductSelector.model.Product;
+import com.example.officeProductSelector.model.Status;
 import com.example.officeProductSelector.model.User;
 import com.example.officeProductSelector.service.ProductService;
 import com.example.officeProductSelector.service.UserService;
@@ -14,16 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-//@RequestMapping("/main")
 public class RegistrationController {
     UserService userService;
     ProductService productService;
-//    ActiveUser activeUser;
 
     public RegistrationController(UserService userService, ProductService productService) {
         this.userService = userService;
         this.productService = productService;
-//        this.activeUser = activeUser;
     }
 
     public static String IS_ACTIVE = "isActive";
@@ -39,7 +37,6 @@ public class RegistrationController {
         return "login";
     }
 
-
     @PostMapping("/authorization")
     public String saveProduct(@RequestParam String login,
                               @RequestParam String password,
@@ -49,15 +46,12 @@ public class RegistrationController {
         if (!(users == null || users.isEmpty())) {
             request.getSession().setAttribute(USER, users.get(0));
             request.getSession().setAttribute(IS_ACTIVE, true);
-//            activeUser.setUser(users);
-//            activeUser.setActive(true);
             List<Product> products = productService.findAllProducts();
             productModel.addAttribute("products", products);
             return "product_list";
         } else {
             return "registration";
         }
-
     }
 
     @PostMapping("/registration")
@@ -65,23 +59,19 @@ public class RegistrationController {
                                 @RequestParam String login,
                                 @RequestParam String password,
                                 HttpServletRequest request) {
-
         List<User> userFromFB = userService.getByLogin(login);
         if (userFromFB == null || userFromFB.isEmpty()) {
             User user = new User();
             user.setName(name);
             user.setLogin(login);
             user.setPassword(password);
+            user.setStatus(Status.USER);
             userService.saveUser(user);
             request.getSession().setAttribute(USER, user);
             request.getSession().setAttribute(IS_ACTIVE, true);
-//            activeUser.setUser(user);
-//            activeUser.setActive(true);
         } else {
             request.getSession().setAttribute(USER, userFromFB.get(0));
             request.getSession().setAttribute(IS_ACTIVE, true);
-//            activeUser.setUser(userFromFB);
-//            activeUser.setActive(true);
         }
         return "product_list";
     }

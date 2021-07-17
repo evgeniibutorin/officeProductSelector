@@ -1,5 +1,6 @@
 package com.example.officeProductSelector.dao;
 
+import com.example.officeProductSelector.model.Status;
 import com.example.officeProductSelector.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -7,7 +8,9 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -21,6 +24,17 @@ public class UserDaoImpl implements UserDao{
     @Autowired
     @Qualifier("sessionFactory")
     private SessionFactory sessionFactory;
+
+     @Override
+    public List<User> getUsers(){
+        Session session = this.sessionFactory.getCurrentSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<User> cq = cb.createQuery(User.class);
+        Root<User> root = cq.from(User.class);
+        CriteriaQuery<User> all = cq.select(root);
+        Query<User> query = session.createQuery(all);
+        return query.getResultList();
+    }
 
     @Override
     public List<User> getByLoginAndPassword(String login, String password) {
@@ -48,7 +62,8 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public void saveProduct(User user) {
+    @Transactional
+    public void save(User user) {
         Session session = this.sessionFactory.getCurrentSession();
         session.save(user);
     }

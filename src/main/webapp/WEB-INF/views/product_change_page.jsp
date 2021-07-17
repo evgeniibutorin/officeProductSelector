@@ -11,17 +11,17 @@
     <h2>
         <a href="/officeProductSelector_war_exploded">Main page</a>
         &nbsp;&nbsp;&nbsp;
-        <a href="/officeProductSelector_war_exploded/main/admlist">List All Products</a>
+        <a href="/officeProductSelector_war_exploded/main/list">List All Products</a>
 
         <a href="/officeProductSelector_war_exploded/logOut">Log out</a>
     </h2>
 </div>
 <div align="center">
     <c:if test="${product != null}">
-    <form action="/officeProductSelector_war_exploded/main/update" method="post" enctype="multipart/form-data">
+    <form action="/officeProductSelector_war_exploded/main/admin/update" method="post" enctype="multipart/form-data">
         </c:if>
         <c:if test="${product == null}">
-        <form action="/officeProductSelector_war_exploded/main/insert" method="post" enctype="multipart/form-data">
+        <form action="/officeProductSelector_war_exploded/main/admin/insert" method="post" enctype="multipart/form-data">
             </c:if>
             <table border="1" cellpadding="5">
                 <caption>
@@ -56,9 +56,9 @@
                 <tr>
                     <th>Logo: </th>
                     <td>
-                        <input type="file" name="file"
+                        <input type="file" name="file"/>
+                        <c:if test="${product != null}"><input type="checkbox" name="doChange" value="yes">Звменить изорбражение?</c:if>
 
-                        />
                     </td>
                 </tr>
                 <tr>

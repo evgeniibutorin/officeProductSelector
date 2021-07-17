@@ -26,7 +26,7 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "product")
     List<Comment> comments;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "product")
+    @OneToMany()
     List<Mark> marks;
 
 

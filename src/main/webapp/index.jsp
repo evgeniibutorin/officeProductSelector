@@ -13,9 +13,6 @@
     <a href="registration">Регистрация</a>
     <br>
     <a href="main/list">Список продуктов</a>
-    <br>
-    <a href="main/admlist">Администрирование продуктов</a>
-    <br>
 
 </h3>
 </body>

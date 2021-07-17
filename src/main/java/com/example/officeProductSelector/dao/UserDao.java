@@ -5,7 +5,8 @@ import com.example.officeProductSelector.model.User;
 import java.util.List;
 
 public interface UserDao {
+    List<User> getUsers();
     List<User> getByLogin(String login);
-    void saveProduct(User user);
+    void save(User user);
     List<User> getByLoginAndPassword(String login, String password);
 }

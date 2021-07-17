@@ -21,10 +21,14 @@ public class User {
 
     Status status;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     List<Comment> comments;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     List<Mark> marks;
+
+    public boolean isAdmin() {
+        return Status.ADMIN.equals(this.status);
+    }
 
 }
