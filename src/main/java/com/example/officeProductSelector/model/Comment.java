@@ -17,7 +17,7 @@ public class Comment {
     @JoinColumn(name = "product_id")
     Product product;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     User user;
 
