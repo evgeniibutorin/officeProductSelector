@@ -57,4 +57,28 @@ public class ProductDaoImpl implements ProductDao {
         return this.sessionFactory.getCurrentSession().get(Product.class, id);
     }
 
+    @Override
+    public Long getNumberOfRows(){
+        Integer numOfRows = 0;
+        Session session = this.sessionFactory.getCurrentSession();
+        CriteriaBuilder qb = session.getCriteriaBuilder();
+        CriteriaQuery<Long> cq = qb.createQuery(Long.class);
+        cq.select(qb.count(cq.from(Product.class)));
+        return session.createQuery(cq).getSingleResult();
+    }
+
+
+
+    @Override
+    public List<Product> paginProductList(int currentPage, int recordsPerPage){
+
+        int start = currentPage * recordsPerPage - recordsPerPage;
+        Session session = this.sessionFactory.getCurrentSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Product> cq = cb.createQuery(Product.class);
+        Root<Product> root = cq.from(Product.class);
+        cq.select(root);
+        Query<Product> query = session.createQuery(cq);
+        return query.setFirstResult(start).setMaxResults(recordsPerPage).getResultList();
+    }
 }

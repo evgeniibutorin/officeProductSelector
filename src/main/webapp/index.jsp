@@ -32,7 +32,7 @@
                 <a href="registration" class="nav-link">Регистрация</a>
             </li>
             <li class="nav-item">
-                <a href="main/list" class="nav-link">Список продуктов</a>
+                <a href="/officeProductSelector_war_exploded/main/pglist?currentPageFromVue=1" class="nav-link">Список продуктов</a>
             </li>
         </ul>
         </div>

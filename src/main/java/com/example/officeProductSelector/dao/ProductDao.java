@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface ProductDao {
 
+    List<Product> paginProductList(int currentPage, int recordsPerPage);
+    Long getNumberOfRows();
     List<Product> getAllProducts();
     void saveProduct(Product product);
     void updateProduct(Product product);

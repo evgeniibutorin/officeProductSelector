@@ -40,10 +40,24 @@ public class ProductServiceImpl implements ProductService{
         productDao.saveProduct(product);
     }
 
+    @Override
     @Transactional
     public void deleteProduct(int id){
         productDao.deleteProduct(id);
     }
+
+    @Override
+    @Transactional
+    public Long getNumberOfRows(){
+        return productDao.getNumberOfRows();
+    }
+
+    @Override
+    @Transactional
+    public List<Product> paginProductList(int currentPage, int recordsPerPage){
+        return productDao.paginProductList(currentPage, recordsPerPage);
+    }
+
 
 
 

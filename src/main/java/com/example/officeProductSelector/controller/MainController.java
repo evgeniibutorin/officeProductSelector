@@ -8,16 +8,12 @@ import com.example.officeProductSelector.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -51,6 +47,7 @@ public class MainController {
 //        return "admin_product_list";
 //    }
 
+
     @GetMapping("/details")
     public String getProductDetails(@RequestParam int id, Model product) {
         Product productFromDB = productService.getProductById(id);
@@ -72,6 +69,29 @@ public class MainController {
         product.addAttribute(productFromDB);
         commentService.saveComment(commentToDb);
         return "product_page";
+    }
+
+
+    @GetMapping("/pglist")
+    public String getList(@RequestParam String currentPageFromVue,
+//                          @RequestParam String recordsPerPageFromVue,
+                          ModelMap modelMap) {
+//        Long l = productService.getNumberOfRows();
+//        System.out.println("Вывод в консоль " + l.toString());
+        int currentPage = Integer.parseInt(currentPageFromVue);
+//        int recordsPerPage = Integer.parseInt(recordsPerPageFromVue);
+        int recordsPerPage = 5;
+        List<Product> products = productService.paginProductList(currentPage, recordsPerPage);
+        modelMap.addAttribute("products", products);
+        int rows = Math.toIntExact(productService.getNumberOfRows());
+        int nOfPages = rows / recordsPerPage;
+        if (nOfPages % recordsPerPage > 0) {
+            nOfPages++;
+        }
+        modelMap.addAttribute("noOfPages", nOfPages);
+        modelMap.addAttribute("currentPage", currentPage);
+//        modelMap.addAttribute("recordsPerPage", recordsPerPage);
+        return "product_list";
     }
 
 

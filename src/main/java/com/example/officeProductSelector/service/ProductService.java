@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface ProductService {
 
+    List<Product> paginProductList(int currentPage, int recordsPerPage);
+    Long getNumberOfRows();
     Product getProductById(int id);
     List<Product> findAllProducts();
     void updateProduct(Product product);

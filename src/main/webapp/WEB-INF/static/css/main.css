@@ -6,3 +6,7 @@ body,html{
     font-family: sans-serif;
     color: #222;
 }
+
+.navbar-nav li{
+    padding-right: 20px;
+}

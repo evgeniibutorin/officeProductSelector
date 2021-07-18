@@ -3,12 +3,50 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <!-- JQuerry library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <%--    Стили bootstrap--%>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <%--    jquery--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <%--   Следующие две стили bootstrap--%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <%--    Подключение иконочных шрифтов к примеру иконка "домой"--%>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script type="text/javascript"
+            src="http://localhost:9090/officeProductSelector_war_exploded/static/css/registration.js">
+    </script>
     <title>Product</title>
     <link href="http://localhost:9090/officeProductSelector_war_exploded/static/css/radiostyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+        <a href="#" class="navbar-brand"><img
+                src="http://localhost:9090/officeProductSelector_war_exploded/static/css/lanit_logo.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <c:if test="${sessionScope.user.isAdmin()}">
+                    <li class="nav-item">
+                        <a href="/officeProductSelector_war_exploded/main/admin/new" class="nav-link">Добавить продукт</a>
+                    </li>
+                </c:if>
+                <li class="nav-item">
+                    <a href="/officeProductSelector_war_exploded" class="nav-link">Главная страница</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/officeProductSelector_war_exploded/logOut" class="nav-link">Выйти</a>
+                </li>
+                <li class="nav-item">
+                    <p class="nav-link user-name"> Пользователь: "${sessionScope.user.getName()}"</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <div align="center">
     <h2 align="centre">Title</h2>
     <h3>
