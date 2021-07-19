@@ -58,7 +58,8 @@ public class RegistrationController {
     public String updateProduct(@RequestParam String name,
                                 @RequestParam String login,
                                 @RequestParam String password,
-                                HttpServletRequest request) {
+                                HttpServletRequest request,
+                                ModelMap productModel) {
         List<User> userFromFB = userService.getByLogin(login);
         if (userFromFB == null || userFromFB.isEmpty()) {
             User user = new User();
@@ -73,6 +74,8 @@ public class RegistrationController {
             request.getSession().setAttribute(USER, userFromFB.get(0));
             request.getSession().setAttribute(IS_ACTIVE, true);
         }
+        List<Product> products = productService.findAllProducts();
+        productModel.addAttribute("products", products);
         return "product_list";
     }
 

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
@@ -15,24 +15,25 @@
     <script type="text/javascript"
             src="http://localhost:9090/officeProductSelector_war_exploded/static/css/registration.js">
     </script>
-        <link rel="stylesheet" href="http://localhost:9090/officeProductSelector_war_exploded/static/css/main.css">
+    <link rel="stylesheet" href="http://localhost:9090/officeProductSelector_war_exploded/static/css/main.css">
     <title>Product</title>
-    <link href="http://localhost:9090/officeProductSelector_war_exploded/static/css/radiostyle.css" rel="stylesheet" type="text/css">
+    <link href="http://localhost:9090/officeProductSelector_war_exploded/static/css/radiostyle.css" rel="stylesheet"
+          type="text/css">
 
 
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('.star').click(function (){
-                    var v = $(this).attr("value")
-                    alert(v);
-                    $.get("/officeProductSelector_war_exploded/main/rating?productIdFromVue=<c:out value='${product.id}' />&mark="+v,
-                        function (responseJson){
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.star').click(function () {
+                $("p.total-mark").remove();
+                var v = $(this).attr("value")
+                $.get("/officeProductSelector_war_exploded/main/rating?productIdFromVue=<c:out value='${product.id}' />&mark=" + v,
+                    function (responseJson) {
                         var $div = $('.total-mark');
-                        $("<div>").appendTo($div).append($("<p>").text(responseJson));
+                        $("<div>").appendTo($div).append($("<p class='total-mark'>").text(responseJson));
                     })
-                })
             })
-        </script>
+        })
+    </script>
 
 </head>
 <body>
@@ -47,11 +48,13 @@
             <ul class="navbar-nav ml-auto">
                 <c:if test="${sessionScope.user.isAdmin()}">
                     <li class="nav-item">
-                        <a href="/officeProductSelector_war_exploded/main/admin/new" class="nav-link">Добавить продукт</a>
+                        <a href="/officeProductSelector_war_exploded/main/admin/new" class="nav-link">Добавить
+                            продукт</a>
                     </li>
                 </c:if>
                 <li class="nav-item">
-                    <a href="/officeProductSelector_war_exploded/main/pglist?currentPageFromVue=1" class="nav-link">Список продуктов</a>
+                    <a href="/officeProductSelector_war_exploded/main/pglist?currentPageFromVue=1" class="nav-link">Список
+                        продуктов</a>
                 </li>
                 <li class="nav-item">
                     <a href="/officeProductSelector_war_exploded" class="nav-link">Главная страница</a>
@@ -82,7 +85,7 @@
     </div>
     <div>
         <p>Описание продукта</p>
-        <p class="comment"><c:out value="${product.description}" /></p>
+        <p class="comment"><c:out value="${product.description}"/></p>
         <div class="rating-area">
             <input type="radio" id="star-5" name="rating" value="5" class="star">
             <label for="star-5" title="Оценка «5»"></label>
@@ -99,19 +102,19 @@
     </div>
     <div>
         <c:forEach var="comment" items="${product.comments}">
-            <p align="left" class="comment"><c:out value="${comment.user.name}: ${comment.comment}" /></p>
+            <p align="left" class="comment"><c:out value="${comment.user.name}: ${comment.comment}"/></p>
         </c:forEach>
     </div>
     <form action="/officeProductSelector_war_exploded/main/comment" method="post">
         <c:if test="${product != null}">
-            <input type="hidden" name="id" value="<c:out value='${product.id}' />" />
+            <input type="hidden" name="id" value="<c:out value='${product.id}' />"/>
         </c:if>
         <tr>
-            <th>Комментарий: </th>
+            <th>Комментарий:</th>
             <td>
                 <input type="text" name="comment" size="45"/>
             </td>
-            <td><input type="submit" value="Сохранить" /></td>
+            <td><input type="submit" value="Сохранить"/></td>
 
         </tr>
     </form>
