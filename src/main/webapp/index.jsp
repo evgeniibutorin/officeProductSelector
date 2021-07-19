@@ -13,7 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <%--    Подключение иконочных шрифтов к примеру иконка "домой"--%>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <link rel="stylesheet" href="WEB-INF/static/css/main.css">
+    <link rel="stylesheet" href="http://localhost:9090/officeProductSelector_war_exploded/static/css/main.css">
     <title>Стартовая страница</title>
 </head>
 <body>

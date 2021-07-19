@@ -1,6 +1,7 @@
 package com.example.officeProductSelector.controller;
 
 import com.example.officeProductSelector.model.Comment;
+import com.example.officeProductSelector.model.Mark;
 import com.example.officeProductSelector.model.Product;
 import com.example.officeProductSelector.model.User;
 import com.example.officeProductSelector.service.CommentService;
@@ -8,10 +9,7 @@ import com.example.officeProductSelector.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -74,12 +72,8 @@ public class MainController {
 
     @GetMapping("/pglist")
     public String getList(@RequestParam String currentPageFromVue,
-//                          @RequestParam String recordsPerPageFromVue,
                           ModelMap modelMap) {
-//        Long l = productService.getNumberOfRows();
-//        System.out.println("Вывод в консоль " + l.toString());
         int currentPage = Integer.parseInt(currentPageFromVue);
-//        int recordsPerPage = Integer.parseInt(recordsPerPageFromVue);
         int recordsPerPage = 5;
         List<Product> products = productService.paginProductList(currentPage, recordsPerPage);
         modelMap.addAttribute("products", products);
@@ -90,8 +84,24 @@ public class MainController {
         }
         modelMap.addAttribute("noOfPages", nOfPages);
         modelMap.addAttribute("currentPage", currentPage);
-//        modelMap.addAttribute("recordsPerPage", recordsPerPage);
         return "product_list";
+    }
+
+    @GetMapping("/rating")
+    @ResponseBody
+    public Mark getRating(@RequestParam String mark,
+                          @RequestParam String productFromVue,
+                          HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        int userID = user.getId();
+        int productId = Integer.parseInt(productFromVue);
+
+
+
+
+
+
+        return null;
     }
 
 

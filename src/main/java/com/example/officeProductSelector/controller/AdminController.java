@@ -26,11 +26,6 @@ public class AdminController {
         this.productService = productService;
     }
 
-//    @GetMapping("/product_change_page")
-//    public String getProductsChangePage() {
-//        return "product_change_page";
-//    }
-
     @GetMapping("/new")
     public String getFormPage() {
         return "product_change_page";
@@ -55,8 +50,17 @@ public class AdminController {
             e.printStackTrace();
         }
         productService.saveProduct(product);
-        List<Product> products = productService.findAllProducts();
+        int currentPage = 1;
+        int recordsPerPage = 5;
+        List<Product> products = productService.paginProductList(currentPage, recordsPerPage);
         productModel.addAttribute("products", products);
+        int rows = Math.toIntExact(productService.getNumberOfRows());
+        int nOfPages = rows / recordsPerPage;
+        if (nOfPages % recordsPerPage > 0) {
+            nOfPages++;
+        }
+        productModel.addAttribute("noOfPages", nOfPages);
+        productModel.addAttribute("currentPage", currentPage);
         return "product_list";
     }
 
@@ -69,7 +73,6 @@ public class AdminController {
                                 ModelMap productModel) {
 
         Product product = productService.getProductById(id);
-//        Product product = new Product();
         product.setName(name);
         product.setDescription(description);
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -84,16 +87,34 @@ public class AdminController {
             }
         }
         productService.updateProduct(product);
-        List<Product> products = productService.findAllProducts();
+        int currentPage = 1;
+        int recordsPerPage = 5;
+        List<Product> products = productService.paginProductList(currentPage, recordsPerPage);
         productModel.addAttribute("products", products);
+        int rows = Math.toIntExact(productService.getNumberOfRows());
+        int nOfPages = rows / recordsPerPage;
+        if (nOfPages % recordsPerPage > 0) {
+            nOfPages++;
+        }
+        productModel.addAttribute("noOfPages", nOfPages);
+        productModel.addAttribute("currentPage", currentPage);
         return "product_list";
     }
 
     @GetMapping("/delete")
     public String deleteProduct(@RequestParam int id, ModelMap productModel) {
         productService.deleteProduct(id);
-        List<Product> products = productService.findAllProducts();
+        int currentPage = 1;
+        int recordsPerPage = 5;
+        List<Product> products = productService.paginProductList(currentPage, recordsPerPage);
         productModel.addAttribute("products", products);
+        int rows = Math.toIntExact(productService.getNumberOfRows());
+        int nOfPages = rows / recordsPerPage;
+        if (nOfPages % recordsPerPage > 0) {
+            nOfPages++;
+        }
+        productModel.addAttribute("noOfPages", nOfPages);
+        productModel.addAttribute("currentPage", currentPage);
         return "product_list";
     }
 
@@ -103,6 +124,7 @@ public class AdminController {
         product.addAttribute(productFromDB);
         return "product_change_page";
     }
+
 
 }
 

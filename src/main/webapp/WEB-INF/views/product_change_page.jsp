@@ -3,7 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-
+    <style>
+        body{
+            background: url(http://localhost:9090/officeProductSelector_war_exploded/static/css/bg.jpg) no-repeat;
+            background-size: 100%;
+        }
+        table{
+            background: white;
+        }
+    </style>
     <%--    Стили bootstrap--%>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <%--    jquery--%>
@@ -30,11 +38,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <c:if test="${sessionScope.user.isAdmin()}">
                     <li class="nav-item">
                         <a href="/officeProductSelector_war_exploded/main/pglist?currentPageFromVue=1" class="nav-link">Список продуктов</a>
                     </li>
-                </c:if>
                 <li class="nav-item">
                     <a href="/officeProductSelector_war_exploded" class="nav-link">Главная страница</a>
                 </li>

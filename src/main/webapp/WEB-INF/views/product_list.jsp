@@ -4,6 +4,13 @@
 <html>
 <head>
 
+    <style>
+        .main-div{
+            background: white;
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+    </style>
 
     <link rel="stylesheet" href="http://localhost:9090/officeProductSelector_war_exploded/static/css/list.css">
     <%--    Стили bootstrap--%>
@@ -51,7 +58,7 @@
     </div>
 </nav>
 
-<div align="center">
+<div align="center" class="main-div">
     <caption><h2>Список продуктов</h2></caption>
     <main class="m-3">
         <div class="row col-md-6">
@@ -78,12 +85,13 @@
                         <td><c:out value="${product.name}"/></td>
                         <td><c:out value="${product.description}"/></td>
                         <td>
-                            <a href="/officeProductSelector_war_exploded/main/details?id=<c:out value='${product.id}' />">Details</a>
+                            <a href="/officeProductSelector_war_exploded/main/details?id=<c:out value='${product.id}' />">Подробно</a>
+                            <br>
 
                             <c:if test="${sessionScope.user.isAdmin()}">
-                                <a href="/officeProductSelector_war_exploded/main/admin/edit?id=<c:out value='${product.id}' />">Edit</a>
-
-                                <a href="/officeProductSelector_war_exploded/main/admin/delete?id=<c:out value='${product.id}' />">Delete</a>
+                                <a href="/officeProductSelector_war_exploded/main/admin/edit?id=<c:out value='${product.id}' />">Изменить</a>
+                                <br>
+                                <a href="/officeProductSelector_war_exploded/main/admin/delete?id=<c:out value='${product.id}' />">Удалить</a>
                             </c:if>
                         </td>
                     </tr>
