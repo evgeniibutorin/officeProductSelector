@@ -24,7 +24,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     List<Comment> comments;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user" )
     List<Mark> marks;
 
     public boolean isAdmin() {

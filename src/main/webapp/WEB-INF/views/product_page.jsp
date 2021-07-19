@@ -25,6 +25,11 @@
                 $('.star').click(function (){
                     var v = $(this).attr("value")
                     alert(v);
+                    $.get("/officeProductSelector_war_exploded/main/rating?productIdFromVue=<c:out value='${product.id}' />&mark="+v,
+                        function (responseJson){
+                        var $div = $('.total-mark');
+                        $("<div>").appendTo($div).append($("<p>").text(responseJson));
+                    })
                 })
             })
         </script>
@@ -90,6 +95,7 @@
             <input type="radio" id="star-1" name="rating" value="1" class="star">
             <label for="star-1" title="Оценка «1»"></label>
         </div>
+        <div class="total-mark"></div>
     </div>
     <div>
         <c:forEach var="comment" items="${product.comments}">
