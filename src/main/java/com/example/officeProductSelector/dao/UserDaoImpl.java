@@ -1,6 +1,5 @@
 package com.example.officeProductSelector.dao;
 
-import com.example.officeProductSelector.model.Status;
 import com.example.officeProductSelector.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -19,14 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl implements UserDao {
 
     @Autowired
     @Qualifier("sessionFactory")
     private SessionFactory sessionFactory;
 
-     @Override
-    public List<User> getUsers(){
+    @Override
+    public List<User> getUsers() {
         Session session = this.sessionFactory.getCurrentSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<User> cq = cb.createQuery(User.class);

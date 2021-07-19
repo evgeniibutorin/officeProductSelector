@@ -59,11 +59,10 @@ public class MainController {
         commentToDb.setComment(comment);
         commentToDb.setProduct(productFromDB);
         commentToDb.setUser(user);
-        commentService.saveComment(commentToDb);
         product.addAttribute(productService.getProductById(id));
+        commentService.saveComment(commentToDb);
         return "product_page";
     }
-
 
     @GetMapping("/pglist")
     public String getList(@RequestParam String currentPageFromVue,
@@ -85,34 +84,13 @@ public class MainController {
     @GetMapping("/rating")
     @ResponseBody
     public Double getRating(@RequestParam String mark,
-                          @RequestParam String productIdFromVue,
-                          HttpServletRequest request) {
+                            @RequestParam String productIdFromVue,
+                            HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         int productId = Integer.parseInt(productIdFromVue);
         Product product = productService.getProductById(productId);
 
-        Double d = markService.totalMark(user,product,mark);
-        //todo: перенести в сервис в транзакцию
-
-//        List<Mark> marks = markService.getMarkByUserAndProductId(user, product);
-//        if (!(marks == null || marks.isEmpty())){
-//            Mark appdataMark = marks.get(0);
-//            appdataMark.setMark(Integer.parseInt(mark));
-//            markService.saveMark(appdataMark);
-//        }
-//        else {
-//            Mark newMark = new Mark();
-//            newMark.setMark(Integer.parseInt(mark));
-//            newMark.setProduct(productService.getProductById(productId));
-//            newMark.setUser(user);
-//            markService.saveMark(newMark);
-//        }
-//        List<Mark> allMarks = markService.getMarksByProductId(product);
-//        double totalScore = 0;
-//        for (Mark oneMark : allMarks) {
-//            totalScore = totalScore+oneMark.getMark();
-//        }
-//        Double total = totalScore/allMarks.size();
+        Double d = markService.totalMark(user, product, mark);
         return d;
     }
 

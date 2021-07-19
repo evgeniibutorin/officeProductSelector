@@ -25,7 +25,7 @@ public class MarkDaoImpl implements MarkDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public List<Mark> getMarkByUserAndProductId(User user, Product product){
+    public List<Mark> getMarkByUserAndProductId(User user, Product product) {
         Session session = this.sessionFactory.getCurrentSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<Mark> cq = cb.createQuery(Mark.class);
@@ -39,7 +39,7 @@ public class MarkDaoImpl implements MarkDao {
     }
 
     @Override
-    public List<Mark> getMarksByProductId(Product product){
+    public List<Mark> getMarksByProductId(Product product) {
         Session session = this.sessionFactory.getCurrentSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<Mark> cq = cb.createQuery(Mark.class);

@@ -58,8 +58,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public Long getNumberOfRows(){
-        Integer numOfRows = 0;
+    public Long getNumberOfRows() {
         Session session = this.sessionFactory.getCurrentSession();
         CriteriaBuilder qb = session.getCriteriaBuilder();
         CriteriaQuery<Long> cq = qb.createQuery(Long.class);
@@ -67,10 +66,8 @@ public class ProductDaoImpl implements ProductDao {
         return session.createQuery(cq).getSingleResult();
     }
 
-
-
     @Override
-    public List<Product> paginProductList(int currentPage, int recordsPerPage){
+    public List<Product> paginProductList(int currentPage, int recordsPerPage) {
 
         int start = currentPage * recordsPerPage - recordsPerPage;
         Session session = this.sessionFactory.getCurrentSession();

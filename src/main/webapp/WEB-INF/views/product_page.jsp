@@ -20,7 +20,6 @@
     <link href="http://localhost:9090/officeProductSelector_war_exploded/static/css/radiostyle.css" rel="stylesheet"
           type="text/css">
 
-
     <script type="text/javascript">
         $(document).ready(function () {
             $('.star').click(function () {

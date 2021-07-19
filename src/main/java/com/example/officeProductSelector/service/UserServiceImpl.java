@@ -15,13 +15,10 @@ public class UserServiceImpl implements UserService {
     UserDao userDao;
     public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
-//        createAdmin();
     }
 
-//    @PostConstruct
     @PostConstruct
     public void createAdmin(){
-//        userDao.getUsers();
             User admin = new User();
             admin.setName("Admin");
             admin.setLogin("a");
@@ -29,7 +26,6 @@ public class UserServiceImpl implements UserService {
             admin.setStatus(Status.ADMIN);
             userDao.save(admin);
     }
-
 
     @Override
     @Transactional

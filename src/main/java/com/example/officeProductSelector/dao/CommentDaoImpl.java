@@ -1,7 +1,6 @@
 package com.example.officeProductSelector.dao;
 
 import com.example.officeProductSelector.model.Comment;
-import com.example.officeProductSelector.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -15,7 +14,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-public class CommentDaoImpl implements CommentDao{
+public class CommentDaoImpl implements CommentDao {
 
     @Autowired
     @Qualifier("sessionFactory")

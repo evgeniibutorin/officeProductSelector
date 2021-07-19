@@ -15,7 +15,6 @@ import java.io.IOException;
 
 @Component
 @WebFilter
-//public class RegistrationFilter extends OncePerRequestFilter {
 public class RegistrationFilter implements Filter, ApplicationContextAware {
 
     private ApplicationContext applicationContext;
@@ -34,8 +33,6 @@ public class RegistrationFilter implements Filter, ApplicationContextAware {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         this.filterConfig = filterConfig;
-//        this.activeUser = applicationContext.getBean(ActiveUser.class);
-
     }
 
     @Override
@@ -51,7 +48,6 @@ public class RegistrationFilter implements Filter, ApplicationContextAware {
         filterChain.doFilter(servletRequest, servletResponse);
         return;
     }
-
 
     @Override
     public void destroy() {
