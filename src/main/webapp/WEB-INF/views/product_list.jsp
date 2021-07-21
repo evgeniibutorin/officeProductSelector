@@ -68,7 +68,7 @@
                     <th>ID</th>
                     <th>Наименование</th>
                     <th>Описание</th>
-<%--                    <th>Средняя оценка</th>--%>
+                    <th>Средняя оценка</th>
                     <th>Действия</th>
                 </tr>
                 <c:forEach var="product" items="${products}">
@@ -85,7 +85,14 @@
                         <td><c:out value="${product.id}"/></td>
                         <td><c:out value="${product.name}"/></td>
                         <td><c:out value="${product.description}"/></td>
-<%--                        <td><c:out value="${product.marks.size()}"/></td>--%>
+                        <td>
+                            <c:if test="${product.totalMark != null}">
+                                <c:out value="${product.totalMark}"/>
+                            </c:if>
+                            <c:if test="${product.totalMark == null}">
+                                Нет оценок
+                            </c:if>
+                           </td>
                         <td>
                             <a href="/officeProductSelector_war_exploded/main/details?id=<c:out value='${product.id}' />">Подробно</a>
                             <br>

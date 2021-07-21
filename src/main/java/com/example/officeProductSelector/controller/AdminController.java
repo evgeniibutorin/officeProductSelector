@@ -1,5 +1,6 @@
 package com.example.officeProductSelector.controller;
 
+import com.example.officeProductSelector.dto.ProductDTO;
 import com.example.officeProductSelector.model.Product;
 import com.example.officeProductSelector.service.ProductService;
 import org.springframework.stereotype.Controller;
@@ -52,7 +53,7 @@ public class AdminController {
         productService.saveProduct(product);
         int currentPage = 1;
         int recordsPerPage = 5;
-        List<Product> products = productService.paginProductList(currentPage, recordsPerPage);
+        List<ProductDTO> products = productService.paginProductList(currentPage, recordsPerPage);
         productModel.addAttribute("products", products);
         int rows = Math.toIntExact(productService.getNumberOfRows());
         int nOfPages = rows / recordsPerPage;
@@ -89,7 +90,7 @@ public class AdminController {
         productService.updateProduct(product);
         int currentPage = 1;
         int recordsPerPage = 5;
-        List<Product> products = productService.paginProductList(currentPage, recordsPerPage);
+        List<ProductDTO> products = productService.paginProductList(currentPage, recordsPerPage);
         productModel.addAttribute("products", products);
         int rows = Math.toIntExact(productService.getNumberOfRows());
         int nOfPages = rows / recordsPerPage;
@@ -106,7 +107,7 @@ public class AdminController {
         productService.deleteProduct(id);
         int currentPage = 1;
         int recordsPerPage = 5;
-        List<Product> products = productService.paginProductList(currentPage, recordsPerPage);
+        List<ProductDTO> products = productService.paginProductList(currentPage, recordsPerPage);
         productModel.addAttribute("products", products);
         int rows = Math.toIntExact(productService.getNumberOfRows());
         int nOfPages = rows / recordsPerPage;

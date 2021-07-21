@@ -1,5 +1,6 @@
 package com.example.officeProductSelector.controller;
 
+import com.example.officeProductSelector.dto.ProductDTO;
 import com.example.officeProductSelector.model.Product;
 import com.example.officeProductSelector.model.Status;
 import com.example.officeProductSelector.model.User;
@@ -46,8 +47,7 @@ public class RegistrationController {
         if (!(users == null || users.isEmpty())) {
             request.getSession().setAttribute(USER, users.get(0));
             request.getSession().setAttribute(IS_ACTIVE, true);
-            List<Product> products = productService.findAllProducts();
-            productModel.addAttribute("products", products);
+            modelSetter(productModel);
             return "product_list";
         } else {
             return "registration";
@@ -74,8 +74,7 @@ public class RegistrationController {
             request.getSession().setAttribute(USER, userFromFB.get(0));
             request.getSession().setAttribute(IS_ACTIVE, true);
         }
-        List<Product> products = productService.findAllProducts();
-        productModel.addAttribute("products", products);
+        modelSetter(productModel);
         return "product_list";
     }
 
@@ -84,6 +83,21 @@ public class RegistrationController {
         request.getSession().removeAttribute(USER);
         request.getSession().removeAttribute(IS_ACTIVE);
         return "login";
+    }
+
+    private ModelMap modelSetter (ModelMap productModel){
+        int currentPage = 1;
+        int recordsPerPage = 5;
+        List<ProductDTO> products = productService.paginProductList(currentPage, recordsPerPage);
+        productModel.addAttribute("products", products);
+        int rows = Math.toIntExact(productService.getNumberOfRows());
+        int nOfPages = rows / recordsPerPage;
+        if (rows % recordsPerPage > 0) {
+            nOfPages++;
+        }
+        productModel.addAttribute("noOfPages", nOfPages);
+        productModel.addAttribute("currentPage", currentPage);
+        return productModel;
     }
 
 }

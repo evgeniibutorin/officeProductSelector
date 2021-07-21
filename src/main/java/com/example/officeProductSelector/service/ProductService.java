@@ -1,12 +1,13 @@
 package com.example.officeProductSelector.service;
 
+import com.example.officeProductSelector.dto.ProductDTO;
 import com.example.officeProductSelector.model.Product;
 
 import java.util.List;
 
 public interface ProductService {
 
-    List<Product> paginProductList(int currentPage, int recordsPerPage);
+    List<ProductDTO>paginProductList(int currentPage, int recordsPerPage);
     Long getNumberOfRows();
     Product getProductById(int id);
     List<Product> findAllProducts();

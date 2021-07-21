@@ -74,13 +74,14 @@
         <c:out value="${product.name}"/>
     </h2>
     <div>
-        <c:if test="${product.logo != null}">
-            <td><img style="display: block; width: 250px; height: 250px;" src='data:image/jpg;base64,${product.logo}'>
-            </td>
-        </c:if>
-        <c:if test="${product.logo == null}">
-            <td>Изображение <br> отсутсвует</td>
-        </c:if>
+        <c:choose>
+            <c:when test="${product.logo != null && product.logo!=''}">
+                <td><img style="display: block; width: 250px; height: 250px;" src='data:image/jpg;base64,${product.logo}'></td>
+            </c:when>
+            <c:otherwise>
+                <td>Изображение <br> отсутсвует</td>
+            </c:otherwise>
+        </c:choose>
     </div>
     <div>
         <p>Описание продукта</p>

@@ -1,5 +1,6 @@
 package com.example.officeProductSelector.controller;
 
+import com.example.officeProductSelector.dto.ProductDTO;
 import com.example.officeProductSelector.model.Comment;
 import com.example.officeProductSelector.model.Mark;
 import com.example.officeProductSelector.model.Product;
@@ -59,8 +60,8 @@ public class MainController {
         commentToDb.setComment(comment);
         commentToDb.setProduct(productFromDB);
         commentToDb.setUser(user);
-        product.addAttribute(productService.getProductById(id));
         commentService.saveComment(commentToDb);
+        product.addAttribute(productService.getProductById(id));
         return "product_page";
     }
 
@@ -69,7 +70,7 @@ public class MainController {
                           ModelMap modelMap) {
         int currentPage = Integer.parseInt(currentPageFromVue);
         int recordsPerPage = 5;
-        List<Product> products = productService.paginProductList(currentPage, recordsPerPage);
+        List<ProductDTO> products = productService.paginProductList(currentPage, recordsPerPage);
         modelMap.addAttribute("products", products);
         int rows = Math.toIntExact(productService.getNumberOfRows());
         int nOfPages = rows / recordsPerPage;
