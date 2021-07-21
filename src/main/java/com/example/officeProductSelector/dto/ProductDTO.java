@@ -1,13 +1,13 @@
 package com.example.officeProductSelector.dto;
 
 import com.example.officeProductSelector.model.Mark;
-import com.example.officeProductSelector.model.Product;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,4 +32,20 @@ public class ProductDTO {
     @Setter
     private Double totalMark;
 
+    public static final Comparator<ProductDTO> COMPARE_BY_TOTAL_MATK = new Comparator<ProductDTO>() {
+        @Override
+        public int compare(ProductDTO o1, ProductDTO o2) {
+            return (int) (o1.getTotalMark() - o2.getTotalMark());
+        }
+    };
+
+    @Override
+    public String toString() {
+        return "ProductDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", totalMark=" + totalMark +
+                '}';
+    }
 }
+

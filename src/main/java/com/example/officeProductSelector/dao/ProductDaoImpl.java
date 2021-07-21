@@ -68,7 +68,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public List<Product> paginProductList(int currentPage, int recordsPerPage) {
-
+        // TODO: 21.07.2021 переписать на nativeQuery
         int start = currentPage * recordsPerPage - recordsPerPage;
         Session session = this.sessionFactory.getCurrentSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
@@ -77,5 +77,6 @@ public class ProductDaoImpl implements ProductDao {
         cq.select(root);
         Query<Product> query = session.createQuery(cq);
         return query.setFirstResult(start).setMaxResults(recordsPerPage).getResultList();
+
     }
 }

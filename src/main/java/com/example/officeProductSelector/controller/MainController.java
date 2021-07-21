@@ -14,7 +14,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
 import java.util.List;
+
+import static com.example.officeProductSelector.dto.ProductDTO.COMPARE_BY_TOTAL_MATK;
 
 @Controller
 @RequestMapping("/main")
@@ -71,6 +74,9 @@ public class MainController {
         int currentPage = Integer.parseInt(currentPageFromVue);
         int recordsPerPage = 5;
         List<ProductDTO> products = productService.paginProductList(currentPage, recordsPerPage);
+        System.out.println("Список до изменения "+products.toString());
+        Collections.sort(products, Collections.reverseOrder(COMPARE_BY_TOTAL_MATK));
+        System.out.println("Список после изменения " + products.toString());
         modelMap.addAttribute("products", products);
         int rows = Math.toIntExact(productService.getNumberOfRows());
         int nOfPages = rows / recordsPerPage;
