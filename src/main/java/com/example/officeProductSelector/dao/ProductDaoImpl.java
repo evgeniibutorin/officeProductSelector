@@ -68,15 +68,18 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public List<Product> paginProductList(int currentPage, int recordsPerPage) {
-        // TODO: 21.07.2021 переписать на nativeQuery
-        int start = currentPage * recordsPerPage - recordsPerPage;
+        int start = currentPage * recordsPerPage - recordsPerPage + 1;
         Session session = this.sessionFactory.getCurrentSession();
-        CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<Product> cq = cb.createQuery(Product.class);
-        Root<Product> root = cq.from(Product.class);
-        cq.select(root);
-        Query<Product> query = session.createQuery(cq);
-        return query.setFirstResult(start).setMaxResults(recordsPerPage).getResultList();
 
+        List<Product> products = session.createNativeQuery(
+                "SELECT * FROM( \n" +
+                        "select p.*, ROW_NUMBER() OVER (order by sum(m.mark)*(-100)/count(m.product_id)) R \n" +
+                        "from product p \n" +
+                        "left join mark m on p.id = m.product_id \n" +
+                        "group by p.id) as G WHERE R BETWEEN :start and :recordsPerPage", Product.class)
+                .setParameter("start", start)
+                .setParameter("recordsPerPage", recordsPerPage + start - 1)
+                .list();
+        return products;
     }
 }
