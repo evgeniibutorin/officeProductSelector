@@ -19,12 +19,6 @@ public class CommentServiceImpl implements CommentService{
 
     @Override
     @Transactional
-    public List<Comment> getByProductId(Product product) {
-        return commentDao.getByProductId(product.getId());
-    }
-
-    @Override
-    @Transactional
     public void saveComment(Comment comment) {
         commentDao.saveComment(comment);
     }

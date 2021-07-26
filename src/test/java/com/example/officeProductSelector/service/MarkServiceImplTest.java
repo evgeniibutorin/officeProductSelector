@@ -26,7 +26,7 @@ public class MarkServiceImplTest {
     }
 
     User user = new User();
-    Product product= new Product();
+    Product product = new Product();
 
     @Test
     public void totalMark() {
@@ -48,46 +48,44 @@ public class MarkServiceImplTest {
     }
 
     @Test
-    public void totalMarkIfListIsNotEmptyTest(){
+    public void totalMarkIfListIsNotEmptyTest() {
         Mark mark = new Mark();
         List<Mark> completedList = new ArrayList<>();
         completedList.add(mark);
-        Mockito.when(markDaoMock.getMarkByUserAndProductId(user,product)).thenReturn(completedList);
-        List<Mark> marks = markDaoMock.getMarkByUserAndProductId(user,product);
+        Mockito.when(markDaoMock.getMarkByUserAndProductId(user, product)).thenReturn(completedList);
+        List<Mark> marks = markDaoMock.getMarkByUserAndProductId(user, product);
         Mark appdataMark;
-        if (!(marks == null || marks.isEmpty())){
+        if (!(marks == null || marks.isEmpty())) {
             appdataMark = Mockito.mock(Mark.class);
             appdataMark.setMark(4);
             markDaoMock.saveMark(appdataMark);
-        }
-        else {
+        } else {
             appdataMark = Mockito.mock(Mark.class);
             appdataMark.setMark(Integer.parseInt("4"));
             appdataMark.setProduct(product);
             appdataMark.setUser(user);
             markDaoMock.saveMark(appdataMark);
         }
-        Mockito.verify(appdataMark,Mockito.atLeast(1)).setMark(4);
+        Mockito.verify(appdataMark, Mockito.atLeast(1)).setMark(4);
     }
 
     @Test
-    public void totalMarkIfListIsEmptyTest(){
+    public void totalMarkIfListIsEmptyTest() {
         List<Mark> completedList = new ArrayList<>();
-        Mockito.when(markDaoMock.getMarkByUserAndProductId(user,product)).thenReturn(completedList);
-        List<Mark> marks = markDaoMock.getMarkByUserAndProductId(user,product);
+        Mockito.when(markDaoMock.getMarkByUserAndProductId(user, product)).thenReturn(completedList);
+        List<Mark> marks = markDaoMock.getMarkByUserAndProductId(user, product);
         Mark appdataMark;
-        if (!(marks == null || marks.isEmpty())){
+        if (!(marks == null || marks.isEmpty())) {
             appdataMark = Mockito.mock(Mark.class);
             appdataMark.setMark(4);
             markDaoMock.saveMark(appdataMark);
-        }
-        else {
+        } else {
             appdataMark = Mockito.mock(Mark.class);
             appdataMark.setMark(Integer.parseInt("4"));
             appdataMark.setProduct(product);
             appdataMark.setUser(user);
             markDaoMock.saveMark(appdataMark);
         }
-        Mockito.verify(appdataMark,Mockito.atLeast(0)).setMark(4);
+        Mockito.verify(appdataMark, Mockito.atLeast(0)).setMark(4);
     }
 }

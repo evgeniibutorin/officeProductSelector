@@ -31,7 +31,6 @@ public class UserDaoImpl implements UserDao {
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<User> cq = cb.createQuery(User.class);
         Root<User> root = cq.from(User.class);
-        CriteriaQuery<User> all = cq.select(root);
         cq.select(root).where(cb.equal(root.get("status"), Status.USER));
         Query<User> query = session.createQuery(cq);
         return query.getResultList();

@@ -23,25 +23,6 @@ public class MarkServiceImpl implements MarkService{
 
     @Override
     @Transactional
-    public List<Mark> getMarkByUserAndProductId(User user, Product product) {
-        return markDao.getMarkByUserAndProductId(user, product);
-    }
-
-    @Override
-    @Transactional
-    public List<Mark> getMarksByProductId(Product product) {
-        return markDao.getMarksByProductId(product);
-    }
-
-    @Override
-    @Transactional
-    public void saveMark(Mark mark){
-        markDao.saveMark(mark);
-    }
-
-
-    @Override
-    @Transactional
     public Double totalMark(User user, Product product, String mark){
         List<Mark> marks = markDao.getMarkByUserAndProductId(user, product);
         if (!(marks == null || marks.isEmpty())){

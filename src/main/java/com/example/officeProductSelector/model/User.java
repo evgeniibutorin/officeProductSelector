@@ -22,10 +22,10 @@ public class User {
 
     Status status;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     List<Comment> comments;
 
-    @OneToMany(mappedBy = "user" )
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     List<Mark> marks;
 
     public boolean isAdmin() {
