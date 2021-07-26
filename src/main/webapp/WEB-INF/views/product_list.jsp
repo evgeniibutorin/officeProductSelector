@@ -5,7 +5,7 @@
 <head>
 
     <style>
-        .main-div{
+        .main-div {
             background: white;
             margin-left: 20%;
             margin-right: 20%;
@@ -42,6 +42,12 @@
                     <li class="nav-item">
                         <a href="/officeProductSelector_war_exploded/main/admin/new" class="nav-link">Добавить
                             продукт</a>
+                    </li>
+                </c:if>
+                <c:if test="${sessionScope.user.isAdmin()}">
+                    <li class="nav-item">
+                        <a href="/officeProductSelector_war_exploded/main/admin/userList" class="nav-link">Список
+                            пользователей</a>
                     </li>
                 </c:if>
                 <li class="nav-item">
@@ -92,7 +98,7 @@
                             <c:if test="${product.totalMark == null}">
                                 Нет оценок
                             </c:if>
-                           </td>
+                        </td>
                         <td>
                             <a href="/officeProductSelector_war_exploded/main/details?id=<c:out value='${product.id}' />">Подробно</a>
                             <br>

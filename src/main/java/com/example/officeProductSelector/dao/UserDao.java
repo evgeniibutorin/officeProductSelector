@@ -9,4 +9,6 @@ public interface UserDao {
     List<User> getByLogin(String login);
     void save(User user);
     List<User> getByLoginAndPassword(String login, String password);
+    List<User> getUsersByName(String name);
+    List<User> deleteStudentAndReturnLost(int id);
 }

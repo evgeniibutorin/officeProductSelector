@@ -34,6 +34,12 @@
             <li class="nav-item">
                 <a href="/officeProductSelector_war_exploded/main/pglist?currentPageFromVue=1" class="nav-link">Список продуктов</a>
             </li>
+            <c:if test="${sessionScope.user.isAdmin()}">
+                <li class="nav-item">
+                    <a href="/officeProductSelector_war_exploded/main/admin/userList" class="nav-link">Список
+                        пользователей</a>
+                </li>
+            </c:if>
         </ul>
         </div>
     </div>

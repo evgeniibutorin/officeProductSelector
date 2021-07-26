@@ -2,7 +2,9 @@ package com.example.officeProductSelector.controller;
 
 import com.example.officeProductSelector.dto.ProductDTO;
 import com.example.officeProductSelector.model.Product;
+import com.example.officeProductSelector.model.User;
 import com.example.officeProductSelector.service.ProductService;
+import com.example.officeProductSelector.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -22,9 +24,11 @@ import java.util.List;
 public class AdminController {
 
     private ProductService productService;
+    private UserService userService;
 
-    public AdminController(ProductService productService) {
+    public AdminController(ProductService productService, UserService userService) {
         this.productService = productService;
+        this.userService = userService;
     }
 
     @GetMapping("/new")
@@ -57,7 +61,7 @@ public class AdminController {
         productModel.addAttribute("products", products);
         int rows = Math.toIntExact(productService.getNumberOfRows());
         int nOfPages = rows / recordsPerPage;
-        if (nOfPages % recordsPerPage > 0) {
+        if (rows % recordsPerPage > 0) {
             nOfPages++;
         }
         productModel.addAttribute("noOfPages", nOfPages);
@@ -126,6 +130,26 @@ public class AdminController {
         return "product_change_page";
     }
 
+    @GetMapping("/userList")
+    public String getUserList(ModelMap usersModel) {
+        List<User> users = userService.getUsers();
+        usersModel.addAttribute("users", users);
+        return "user_list";
+    }
+
+    @GetMapping("user/find")
+    public String getStudentsByCourse(@RequestParam(value = "name") String name, ModelMap usersModel) {
+        List<User> users = userService.getUsersByName(name);
+        usersModel.addAttribute("users", users);
+        return "user_list";
+    }
+
+    @GetMapping("user/delete")
+    public String deleteUser(@RequestParam(value = "id") int id, ModelMap usersModel) {
+        List<User> users = userService.deleteUserAndReturnLost(id);
+        usersModel.addAttribute("users", users);
+        return "user_list";
+    }
 
 }
 

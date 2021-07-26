@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Comparator;
 import java.util.List;
 
 @NoArgsConstructor
@@ -31,13 +30,6 @@ public class ProductDTO {
     @Getter
     @Setter
     private Double totalMark;
-
-    public static final Comparator<ProductDTO> COMPARE_BY_TOTAL_MATK = new Comparator<ProductDTO>() {
-        @Override
-        public int compare(ProductDTO o1, ProductDTO o2) {
-            return (int) (o1.getTotalMark() - o2.getTotalMark());
-        }
-    };
 
     @Override
     public String toString() {

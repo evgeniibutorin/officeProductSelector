@@ -1,5 +1,7 @@
 package com.example.officeProductSelector.dao;
 
+import com.example.officeProductSelector.model.Product;
+import com.example.officeProductSelector.model.Status;
 import com.example.officeProductSelector.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -30,7 +32,8 @@ public class UserDaoImpl implements UserDao {
         CriteriaQuery<User> cq = cb.createQuery(User.class);
         Root<User> root = cq.from(User.class);
         CriteriaQuery<User> all = cq.select(root);
-        Query<User> query = session.createQuery(all);
+        cq.select(root).where(cb.equal(root.get("status"), Status.USER));
+        Query<User> query = session.createQuery(cq);
         return query.getResultList();
     }
 
@@ -65,4 +68,26 @@ public class UserDaoImpl implements UserDao {
         Session session = this.sessionFactory.getCurrentSession();
         session.save(user);
     }
+
+    @Override
+    public List<User> getUsersByName(String name) {
+        Session session = this.sessionFactory.getCurrentSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<User> cq = cb.createQuery(User.class);
+        Root<User> root = cq.from(User.class);
+        cq.select(root).where(cb.equal(root.get("name"), name));
+        Query<User> query = session.createQuery(cq);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<User> deleteStudentAndReturnLost(int id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        User user = session.get(User.class, id);
+        if (user != null) {
+            session.delete(user);
+        }
+        return getUsers();
+    }
+
 }

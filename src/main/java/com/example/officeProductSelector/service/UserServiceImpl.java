@@ -50,8 +50,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    public List<User> deleteUserAndReturnLost(int id) {
+        return userDao.deleteStudentAndReturnLost(id);
+    }
+
+    @Override
+    @Transactional
     public List<User> getUsers(){
         return userDao.getUsers();
+    }
+
+    @Override
+    @Transactional
+    public List<User> getUsersByName(String name) {
+        return userDao.getUsersByName(name);
     }
 
 }

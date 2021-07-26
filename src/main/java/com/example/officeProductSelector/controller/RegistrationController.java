@@ -1,7 +1,6 @@
 package com.example.officeProductSelector.controller;
 
 import com.example.officeProductSelector.dto.ProductDTO;
-import com.example.officeProductSelector.model.Product;
 import com.example.officeProductSelector.model.Status;
 import com.example.officeProductSelector.model.User;
 import com.example.officeProductSelector.service.ProductService;
@@ -70,12 +69,13 @@ public class RegistrationController {
             userService.saveUser(user);
             request.getSession().setAttribute(USER, user);
             request.getSession().setAttribute(IS_ACTIVE, true);
+            modelSetter(productModel);
+            return "product_list";
         } else {
-            request.getSession().setAttribute(USER, userFromFB.get(0));
-            request.getSession().setAttribute(IS_ACTIVE, true);
+            Boolean hasBeenCreated = true;
+            productModel.addAttribute("hasBeenCreated", hasBeenCreated);
+            return "registration";
         }
-        modelSetter(productModel);
-        return "product_list";
     }
 
     @GetMapping("/logOut")
@@ -85,7 +85,7 @@ public class RegistrationController {
         return "login";
     }
 
-    private ModelMap modelSetter (ModelMap productModel){
+    private ModelMap modelSetter(ModelMap productModel) {
         int currentPage = 1;
         int recordsPerPage = 5;
         List<ProductDTO> products = productService.paginProductList(currentPage, recordsPerPage);
