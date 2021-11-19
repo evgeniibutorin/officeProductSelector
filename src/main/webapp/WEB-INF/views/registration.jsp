@@ -5,7 +5,7 @@
 <head>
     <style>
         body {
-            background: url(http://localhost:9090/officeProductSelector_war_exploded/static/css/bg.jpg) no-repeat;
+            background: url(http://localhost:9090/officeProductSelector_war_exploded/static/css/img.png) no-repeat;
             background-size: 100%;
         }
 

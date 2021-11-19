@@ -6,7 +6,7 @@
 <head>
     <style>
         body{
-            background: url(http://localhost:9090/officeProductSelector_war_exploded/static/css/bg.jpg) no-repeat;
+            background: url(http://localhost:9090/officeProductSelector_war_exploded/static/css/img.png) no-repeat;
             background-size: 100%;
         }
         table{
@@ -39,7 +39,7 @@
                     <a href="registration" class="nav-link">Регистрация</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/officeProductSelector_war_exploded/main/pglist?currentPageFromVue=1" class="nav-link">Список продуктов</a>
+                    <a href="/officeProductSelector_war_exploded/main/pglist?currentPageFromVue=1" class="nav-link">Список недвижимости</a>
                 </li>
             </ul>
         </div>

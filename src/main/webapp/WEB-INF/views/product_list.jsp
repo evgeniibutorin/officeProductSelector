@@ -41,7 +41,7 @@
                 <c:if test="${sessionScope.user.isAdmin()}">
                     <li class="nav-item">
                         <a href="/officeProductSelector_war_exploded/main/admin/new" class="nav-link">Добавить
-                            продукт</a>
+                            помещение</a>
                     </li>
                 </c:if>
                 <c:if test="${sessionScope.user.isAdmin()}">
@@ -65,15 +65,15 @@
 </nav>
 
 <div align="center" class="main-div">
-    <caption><h2>Список продуктов</h2></caption>
+    <caption><h2>Список недвижимости</h2></caption>
     <main class="m-3">
         <div class="row col-md-6">
             <table class="table table-striped table-bordered table-sm">
                 <tr>
-                    <th>Изображение</th>
-                    <th>ID</th>
-                    <th>Наименование</th>
-                    <th>Описание</th>
+                    <th>Планировка</th>
+                    <th>Кадастровый №</th>
+                    <th>Собственник</th>
+                    <th>Адрес</th>
                     <th>Средняя оценка</th>
                     <th>Действия</th>
                 </tr>
@@ -85,7 +85,7 @@
                                          src='data:image/jpg;base64,${product.logo}'></td>
                             </c:when>
                             <c:otherwise>
-                                <td>Изображение <br> отсутсвует</td>
+                                <td>Планировка <br> отсутсвует</td>
                             </c:otherwise>
                         </c:choose>
                         <td><c:out value="${product.id}"/></td>

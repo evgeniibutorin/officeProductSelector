@@ -85,12 +85,12 @@
                 <td><img style="display: block; width: 250px; height: 250px;" src='data:image/jpg;base64,${product.logo}'></td>
             </c:when>
             <c:otherwise>
-                <td>Изображение <br> отсутсвует</td>
+                <td>Планировка <br> отсутсвует</td>
             </c:otherwise>
         </c:choose>
     </div>
     <div>
-        <p>Описание продукта</p>
+        <p>Адрес помещения</p>
         <p class="comment"><c:out value="${product.description}"/></p>
         <div class="rating-area">
             <input type="radio" id="star-5" name="rating" value="5" class="star">

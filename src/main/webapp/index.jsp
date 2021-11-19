@@ -32,7 +32,7 @@
                 <a href="registration" class="nav-link">Регистрация</a>
             </li>
             <li class="nav-item">
-                <a href="/officeProductSelector_war_exploded/main/pglist?currentPageFromVue=1" class="nav-link">Список продуктов</a>
+                <a href="/officeProductSelector_war_exploded/main/pglist?currentPageFromVue=1" class="nav-link">Список недвижимости</a>
             </li>
             <c:if test="${sessionScope.user.isAdmin()}">
                 <li class="nav-item">

@@ -5,7 +5,7 @@
 <head>
     <style>
         body{
-            background: url(http://localhost:9090/officeProductSelector_war_exploded/static/css/bg.jpg) no-repeat;
+            background: url(http://localhost:9090/officeProductSelector_war_exploded/static/css/img.png) no-repeat;
             background-size: 100%;
         }
         table{
@@ -39,7 +39,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a href="/officeProductSelector_war_exploded/main/pglist?currentPageFromVue=1" class="nav-link">Список продуктов</a>
+                        <a href="/officeProductSelector_war_exploded/main/pglist?currentPageFromVue=1" class="nav-link">Список недвижимости</a>
                     </li>
                 <li class="nav-item">
                     <a href="/officeProductSelector_war_exploded" class="nav-link">Главная страница</a>
@@ -62,7 +62,7 @@
                 Изменить данные
             </c:if>
             <c:if test="${product == null}">
-                Добавить продукт
+                Добавить помещение
             </c:if>
         </h2>
     </caption>
@@ -77,7 +77,7 @@
                     <input type="hidden" name="id" value="<c:out value='${product.id}' />" />
                 </c:if>
                 <tr>
-                    <th>Наименование продукта: </th>
+                    <th>ФИО собственника: </th>
                     <td>
                         <input type="text" name="name" size="45"
                                value="<c:out value='${product.name}' />"
@@ -85,7 +85,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>Описание продукта: </th>
+                    <th>Адрес помещения: </th>
                     <td>
                         <input type="text" name="description" size="45"
                                value="<c:out value='${product.description}' />"
@@ -93,7 +93,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>Изображение продукта: </th>
+                    <th>План помещения: </th>
                     <td>
                         <input type="file" name="file"/>
                         <c:if test="${product != null}"><input type="checkbox" name="doChange" value="yes">Звменить изорбражение?</c:if>

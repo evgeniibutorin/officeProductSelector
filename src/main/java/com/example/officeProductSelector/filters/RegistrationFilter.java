@@ -39,6 +39,7 @@ public class RegistrationFilter implements Filter, ApplicationContextAware {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
+        request.setCharacterEncoding("UTF-8");
         Boolean isActive = (Boolean) request.getSession().getAttribute("isActive");
         if (!Boolean.TRUE.equals(isActive)) {
             HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;

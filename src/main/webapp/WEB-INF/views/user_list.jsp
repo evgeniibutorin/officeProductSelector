@@ -45,7 +45,7 @@
                 <c:if test="${sessionScope.user.isAdmin()}">
                     <li class="nav-item">
                         <a href="/officeProductSelector_war_exploded/main/admin/new" class="nav-link">Добавить
-                            продукт</a>
+                            помещение</a>
                     </li>
                 </c:if>
                 <li class="nav-item">
@@ -80,7 +80,7 @@
             <br>
             <table class="table table-striped table-bordered table-sm">
                 <tr>
-                    <th>ID</th>
+                    <th>Кадастровый №</th>
                     <th>Имя</th>
                     <th>Логин</th>
                     <th>Действия</th>
